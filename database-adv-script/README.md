@@ -15,4 +15,12 @@ Retrieves all users and all bookings, even when:
 - a user has no bookings, or
 - a booking is not associated with a valid user.
 
+# Subqueries
+
+This file contains examples of both correlated and non-correlated subqueries.
+
+- **Non-correlated subquery:** Finds properties where the average review rating is greater than 4.0.
+- **Correlated subquery:** Finds users who have made more than 3 bookings by counting bookings linked to each user.
+
+Queries are located in `subqueries.sql`.
 
