@@ -19,6 +19,16 @@ We reviewed common query patterns involving the `users`, `bookings`, and `proper
 ## 2. Indexes Created
 
 The following indexes were created to improve query performance:
+# Index Performance Analysis
+
+## Example Query
+
+```sql
+SELECT p.id, p.name
+FROM bookings b
+JOIN properties p ON b.property_id = p.id
+WHERE b.start_date >= '2025-01-01'
+ORDER BY b.start_date;
 
 ```sql
 CREATE INDEX idx_users_email ON users(email);
