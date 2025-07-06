@@ -1,16 +1,17 @@
--- INNER JOIN: Get all bookings and the users who made them
+-- 1. INNER JOIN: Retrieve all bookings and the respective users who made those bookings
 SELECT
     bookings.id AS booking_id,
-    users.id AS user_id,
-    users.name AS user_name,
     bookings.property_id,
+    bookings.user_id,
     bookings.start_date,
-    bookings.end_date
+    bookings.end_date,
+    users.name AS user_name,
+    users.email AS user_email
 FROM bookings
 INNER JOIN users ON bookings.user_id = users.id;
 
 
--- LEFT JOIN: Get all properties and their reviews (even if no reviews)
+-- 2. LEFT JOIN: Retrieve all properties and their reviews, including properties that have no reviews
 SELECT
     properties.id AS property_id,
     properties.name AS property_name,
@@ -21,20 +22,12 @@ FROM properties
 LEFT JOIN reviews ON properties.id = reviews.property_id;
 
 
--- FULL OUTER JOIN: Get all users and all bookings, including unmatched records
+-- 3. FULL OUTER JOIN: Retrieve all users and all bookings, even if the user has no booking or a booking is not linked to a user
+-- Note: If using MySQL (which doesn't support FULL OUTER JOIN), use a LEFT JOIN + RIGHT JOIN + UNION
 SELECT
     users.id AS user_id,
     users.name AS user_name,
-    bookings.id AS booking_id,
-    bookings.property_id,
-    bookings.start_date,
-    bookings.end_date
-FROM users
-FULL OUTER JOIN bookings ON users.id = bookings.user_id;
--- FULL OUTER JOIN workaround for MySQL (if needed)
-SELECT
-    users.id AS user_id,
-    users.name AS user_name,
+    users.email AS user_email,
     bookings.id AS booking_id,
     bookings.property_id,
     bookings.start_date,
@@ -47,6 +40,7 @@ UNION
 SELECT
     users.id AS user_id,
     users.name AS user_name,
+    users.email AS user_email,
     bookings.id AS booking_id,
     bookings.property_id,
     bookings.start_date,
