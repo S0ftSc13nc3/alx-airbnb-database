@@ -1,23 +1,41 @@
-# Database Schema - Airbnb Clone
+# Database Schema
 
-This folder contains the SQL script that defines the database schema for the Airbnb clone project.
+This folder contains the SQL schema definition for the Airbnb clone project. The schema is written to support core functionalities such as user management, property listings, bookings, reviews, and payments.
 
-## Files
+## File
 
-- `schema.sql`: Contains the SQL `CREATE TABLE` statements used to set up the core database tables.
+- **schema.sql** – Contains `CREATE TABLE` statements for all main entities with appropriate data types, primary and foreign key constraints, and indexes for performance optimization.
 
-## Tables Created
+## Tables Overview
 
-- **User** – Stores user details like ID, name, and email.
-- **Owner** – Stores property owner information.
-- **Property** – Links each property to an address and owner.
-- **PropertyAmenity** – A join table linking properties to their amenities (e.g. Wi-Fi, Pool).
-- **Booking** – Tracks property bookings by users.
+### 1. users
+Stores registered users with fields for name, email, password, and timestamps.
+
+### 2. properties
+Stores listings posted by users. Each property references an owner (user).
+
+### 3. bookings
+Tracks bookings made by users for specific properties, including check-in and check-out dates.
+
+### 4. reviews
+Allows users to review properties. Includes rating and optional comments.
+
+### 5. payments
+Stores payment details for each booking, including method, status, and amount.
+
+## Indexes
+
+Indexes are added on frequently queried columns like:
+- `users.email`
+- `properties.location`
+- `bookings.check_in`
+- `reviews.rating`
+
+These indexes help speed up SELECT queries on these fields.
 
 ## How to Use
 
-1. Connect to your SQL database (e.g. MySQL, PostgreSQL).
-2. Run the commands in `schema.sql`.
-3. All tables will be created with the appropriate primary and foreign key constraints.
-4. Indexes are also included for better performance on search queries.
+To create the schema in a PostgreSQL database:
 
+```bash
+psql -U your_username -d your_database -f database-schema/schema.sql
