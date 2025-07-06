@@ -32,3 +32,15 @@ FROM bookings b
 JOIN properties p ON b.property_id = p.id
 WHERE b.start_date >= '2025-01-01'
 ORDER BY b.start_date;
+
+# Index Performance Analysis
+
+## Example Query
+
+```sql
+SELECT p.id, p.name
+FROM bookings b
+JOIN properties p ON b.property_id = p.id
+WHERE b.start_date >= '2025-01-01'
+ORDER BY b.start_date;
+
