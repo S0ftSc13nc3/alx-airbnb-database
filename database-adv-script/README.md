@@ -24,3 +24,14 @@ This file contains examples of both correlated and non-correlated subqueries.
 
 Queries are located in `subqueries.sql`.
 
+## Aggregations and Window Functions
+
+This script demonstrates:
+
+- Using `COUNT` with `GROUP BY` to find the total number of bookings made by each user.
+- Using the window function `RANK()` to rank properties based on how many bookings they have received.
+
+These queries help analyze booking patterns per user and per property.
+
+See `aggregations_and_window_functions.sql` for details.
+
